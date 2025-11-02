@@ -22,6 +22,71 @@ const baseDeDonnees = [];
 
 function signUp(nom, email, password, confirmPassword) {
 	
+
+    const baseDeDonnees = []; 
+
+
+
+function signUp(nom, email, password, confirmPassword) {
+  
+  const utilisateurExiste = baseDeDonnees.find(user => user.email === email);
+  if (utilisateurExiste) {
+    return "Erreur : cet email est déjà utilisé.";
+  }
+
+  
+  if (password !== confirmPassword) {
+    return "Erreur : les mots de passe ne correspondent pas.";
+  }
+
+  
+  const nouvelUtilisateur = {
+    id: baseDeDonnees.length + 1,
+    nom: nom,
+    email: email,
+    password: password,
+    estConnecte: false,
+    estBloque: false
+  };
+
+  
+  baseDeDonnees.push(nouvelUtilisateur);
+
+  return `Utilisateur ${nom} créé avec succès !`;
+}
+
+
+
+function login(email, password) {
+  const utilisateur = baseDeDonnees.find(user => user.email === email);
+
+  if (!utilisateur) {
+    return "Erreur : utilisateur introuvable.";
+  }
+
+  if (utilisateur.password !== password) {
+    return "Erreur : mot de passe incorrect.";
+  }
+
+  if (utilisateur.estBloque) {
+    return "Erreur : ce compte est bloqué.";
+  }
+
+  utilisateur.estConnecte = true;
+  return utilisateur; 
+}
+
+
+
+console.log(signUp("Maria", "maria@gmail.com", "1234", "1234"));
+console.log(signUp("Exau", "exau@gmail.com", "abcd", "abcd"));
+console.log(signUp("Maria", "maria@gmail.com", "1234", "1234")); 
+
+console.log(login("maria@gmail.com", "1234"));
+console.log(login("inconnu@gmail.com", "1234")); 
+
+console.log(baseDeDonnees); 
+
 }
 
 function login() {

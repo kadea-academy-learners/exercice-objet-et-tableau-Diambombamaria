@@ -12,9 +12,22 @@ La fonction doit retourner un objet contenant ces trois propriétés :
     - estConnecte (boolean)
 */
 
-function createUser() {
+
+    function createUser(nom, age, estConnecte) {
+    return{
+    nom: nom,
+    age: age,
+    estConnecte: estConnecte,
+    };
+  } 
+    const utilisateurs = [
+     createUser("maria", 70, true),
+    ];
+ 
+  console.log(utilisateurs);
     
-}
+
+
 
 module.exports = {
     createUser,
