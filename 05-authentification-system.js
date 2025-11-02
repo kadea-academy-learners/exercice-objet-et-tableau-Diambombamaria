@@ -18,17 +18,13 @@
 //    - Si l'utilisateur est bloqué (`estBloque` à true), retourne un message d'erreur spécifique.
 //    - Sinon, met à jour `estConnecte` à true pour cet utilisateur et retourne l'objet utilisateur connecté.
 
+
+
 const baseDeDonnees = [];
 
-function signUp(nom, email, password, confirmPassword) {
-	
-
-    const baseDeDonnees = []; 
-
-
 
 function signUp(nom, email, password, confirmPassword) {
-  
+ 
   const utilisateurExiste = baseDeDonnees.find(user => user.email === email);
   if (utilisateurExiste) {
     return "Erreur : cet email est déjà utilisé.";
@@ -46,7 +42,7 @@ function signUp(nom, email, password, confirmPassword) {
     email: email,
     password: password,
     estConnecte: false,
-    estBloque: false
+    estBloque: false,
   };
 
   
@@ -54,7 +50,6 @@ function signUp(nom, email, password, confirmPassword) {
 
   return `Utilisateur ${nom} créé avec succès !`;
 }
-
 
 
 function login(email, password) {
@@ -73,24 +68,18 @@ function login(email, password) {
   }
 
   utilisateur.estConnecte = true;
-  return utilisateur; 
+  return utilisateur;
 }
-
 
 
 console.log(signUp("Maria", "maria@gmail.com", "1234", "1234"));
 console.log(signUp("Exau", "exau@gmail.com", "abcd", "abcd"));
 console.log(signUp("Maria", "maria@gmail.com", "1234", "1234")); 
 
-console.log(login("maria@gmail.com", "1234"));
+console.log(login("maria@gmail.com", "1234")); 
 console.log(login("inconnu@gmail.com", "1234")); 
 
 console.log(baseDeDonnees); 
 
-}
-
-function login() {
-	
-}
 
 module.exports = { baseDeDonnees, signUp, login };
